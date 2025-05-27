@@ -1,4 +1,7 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const {getDefaultConfig} = require('@react-native/metro-config');
+const {
+  wrapWithReanimatedMetroConfig,
+} = require('react-native-reanimated/metro-config');
 
 /**
  * Metro configuration
@@ -7,5 +10,18 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  * @type {import('@react-native/metro-config').MetroConfig}
  */
 const config = {};
+// can use svg like a component => e.g export { default as IcoHome } from './ico-home.svg';
+// const config = {
+//   transformer: {
+//     babelTransformerPath: require.resolve('react-native-svg-transformer'),
+//   },
+//   resolver: {
+//     assetExts: assetExts.filter(ext => ext !== 'svg'),
+//     sourceExts: [...sourceExts, 'svg'],
+//   },
+// };
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+module.exports = wrapWithReanimatedMetroConfig(
+  getDefaultConfig(__dirname),
+  config,
+);

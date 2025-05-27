@@ -1,0 +1,22 @@
+export enum STATUS_API {
+    //server 
+    SERVICE_UNAVAILABLE = 503,
+    INTERNAL_SERVER_ERROR = 500,
+    BAD_GATEWAY = 502,
+    GATEWAY_TIMEOUT = 504,
+    HTTP_VERSION_NOT_SUPPORTED = 505,
+
+    // client
+    BAD_REQUEST = 400,
+    UNAUTHORIZED = 401,
+    FORBIDDEN = 403,
+    NOT_FOUND = 404,
+    REQUEST_TIMEOUT = 408,
+
+    //success
+    SUCCESS = 200,
+    CREATED = 201,
+    ACCEPTED = 202,
+    NO_CONTENT = 204,
+    PARTIAL_CONTENT = 206
+}

@@ -16,6 +16,8 @@ end
 
 target 'pomoAI' do
   config = use_native_modules!
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -31,5 +33,17 @@ target 'pomoAI' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+      # 👉 Add this loop after calling react_native_post_install
+    installer.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+        # Exclude arm64 ONLY for Simulator
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+      end
+      if target.name == 'RNReanimated'
+        target.build_configurations.each do |config|
+          config.build_settings['C++_STANDARD'] = 'c++14'  # Ensure C++14 is set
+        end
+      end
+    end
   end
 end
