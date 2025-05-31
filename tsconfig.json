@@ -10,9 +10,12 @@
       "@utils/*": ["src/utils/*"],
       "@provider/*": ["src/provider/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@store/*": ["src/stores"],
-      "@theme/*": ["src/theme"],
-      
+      "@store/*": ["src/stores/*"],
+      "@theme/*": ["src/theme/*"],
+      "@types/*": ["src/types/*"],
+      "@navigation/*": ["src/navigations/*"],
+      "@components/*": ["src/components/*"],
+      "@pages/*": ["src/components/pages/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"], //include d.ts với những declare modules ["svg.d.ts", "global.d.ts", "**/*.ts", "**/*.tsx"]

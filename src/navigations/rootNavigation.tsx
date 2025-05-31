@@ -13,109 +13,116 @@ import {
 import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
 import { useCallback, useEffect, useMemo } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import styled from "styled-components";
-import { RoutesNavigation } from "./routesNavigation";
-import BottomTabNavigation from "./bottomTabNavigation";
+import styled from 'styled-components';
 
+import {RoutesNavigation, RoutesNavigationWithParams} from './routesNavigation';
+import BottomTabNavigation from './bottomTabNavigation';
+import OnBoardingScreen from '@pages/onBoarding';
+import {AsParamListBase} from '@types';
+
+export type DirectParamListBase = AsParamListBase<RoutesNavigationWithParams>;
 
 const NativeStack = createNativeStackNavigator();
 
- const modalStackOption: NativeStackNavigationOptions = {
-   headerShown: false,
-   gestureEnabled: false,
-   animation: 'slide_from_bottom',
- };
+const modalStackOption: NativeStackNavigationOptions = {
+  headerShown: false,
+  gestureEnabled: false,
+  animation: 'slide_from_bottom',
+};
 
 const RootNavigation = () => {
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
-    const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const isHideHomeIndicator = IsIos ? true : true;
 
-    const isHideHomeIndicator = IsIos ? true : true
+  const eventCallback = useCallback(
+    (event: NavigationEvent) => {
+      const name = event.navigateName;
+      const params = event.params;
+      if (event.action === NAVIGATION_TYPE.NAVIGATE) {
+        navigation.navigate(name, {...params});
+      } else if (event.action === NAVIGATION_TYPE.PUSH) {
+        const pushAction = StackActions.push(name, {...params});
+        navigation.dispatch(pushAction);
+      } else if (event.action === NAVIGATION_TYPE.RESET) {
+        navigation.reset({
+          index: 0,
+          routes: [{name}],
+        });
+      }
+      // handle replace
+      // else if (event.action === NAVIGATION_TYPE.REPLACE) {
+      //     navigation.replace()
+      // }
+    },
+    [navigation],
+  );
 
-    const eventCallback = useCallback(
-      (event: NavigationEvent) => {
-        const name = event.navigateName;
-            const params = event.params;
-        if (event.action === NAVIGATION_TYPE.NAVIGATE) {
-          navigation.navigate(name, {...params});
-        } else if (event.action === NAVIGATION_TYPE.PUSH) {
-          const pushAction = StackActions.push(name, {...params});
-          navigation.dispatch(pushAction);
-        } else if (event.action === NAVIGATION_TYPE.RESET) {
-          navigation.reset({
-            index: 0,
-            routes: [{name}],
-          });
-        }
-            // handle replace 
-        // else if (event.action === NAVIGATION_TYPE.REPLACE) {
-        //     navigation.replace()
-        // }
+  useEffect(() => {
+    NavigationEventEmitter.addChangeListener(eventCallback);
+
+    return () => {
+      NavigationEventEmitter.removeChangeListener();
+    };
+  }, [eventCallback]);
+
+  const MainStackNavigationOptions: NativeStackNavigationOptions = useMemo(() => {
+    return {
+      title: '',
+      animation: 'slide_from_right',
+      headerShown: true,
+      gestureEnabled: true,
+      autoHideHomeIndicator: isHideHomeIndicator ? false : false,
+      headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: 'black',
       },
-      [navigation],
-    );
+      headerLeft: () => (
+        <ButtonHitSlop
+          onPress={() => {
+            if (navigation.canGoBack()) {
+              navigation.goBack();
+            }
+          }}>
+          <Text style={{color: 'white', fontSize: 24}}>{'<'}</Text>
+        </ButtonHitSlop>
+      ),
+    };
+  }, []);
 
-    useEffect(() => {
-      NavigationEventEmitter.addChangeListener(eventCallback);
-
-      return () => {
-        NavigationEventEmitter.removeChangeListener();
-      };
-    }, [eventCallback]);
-
-    const MainStackNavigationOptions = useMemo(() => {
-        return {
-          title: '',
-          animation: 'slide_from_right',
-          headerShown: true,
-          gestureEnabled: true,
-          autoHideHomeIndicator: isHideHomeIndicator ? false : false,
-          headerBackTitleVisible: false,
-          headerStyle: {
-            backgroundColor: 'black',
-          },
-          headerLeft: () => (
-            <ButtonHitSlop
-              onPress={() => {
-                if (navigation.canGoBack()) {
-                  navigation.goBack();
-                }
-                  }}>
-                  <Text style={{color:'white', fontSize: 24}}>{"<"}</Text>
-            </ButtonHitSlop>
-          ),
-        };
-
-    }, [])
-   
-
-    const AuthStackNavigationOptions = useMemo(
-      () =>
-        ({route}: {route: RouteProp<ParamListBase, string>}): NativeStackNavigationOptions => {
-          return route.name === RoutesNavigation.AUTH
-            ? modalStackOption
-            : {
-                animation: 'slide_from_right',
-                headerShown: false,
-                gestureEnabled: true,
-              };
-        },
-      [],
-    );
-    return (
-      <NativeStack.Navigator initialRouteName={RoutesNavigation.HOME}>
-        <NativeStack.Group screenOptions={MainStackNavigationOptions}>
-          <NativeStack.Screen
-            name={RoutesNavigation.HOME}
-            component={BottomTabNavigation}
-            options={{
+  const AuthStackNavigationOptions = useMemo(
+    () =>
+      ({route}: {route: RouteProp<ParamListBase, string>}): NativeStackNavigationOptions => {
+        return route.name === RoutesNavigation.AUTH
+          ? modalStackOption
+          : {
+              animation: 'slide_from_right',
               headerShown: false,
-            }}
-          />
-        </NativeStack.Group>
-      </NativeStack.Navigator>
-    );
-
+              gestureEnabled: true,
+            };
+      },
+    [],
+  );
+  return (
+    <NativeStack.Navigator initialRouteName={RoutesNavigation.HOME}>
+      <NativeStack.Group screenOptions={MainStackNavigationOptions}>
+        <NativeStack.Screen
+          name={RoutesNavigation.HOME}
+          component={BottomTabNavigation}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <NativeStack.Screen
+          name={RoutesNavigation.ONBOARDING}
+          component={OnBoardingScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </NativeStack.Group>
+    </NativeStack.Navigator>
+  );
 };
 export default RootNavigation;
 

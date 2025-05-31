@@ -1082,7 +1082,7 @@ export type ThemeVariables = LightThemeType &
     aosSystemBottom?: number;
     aosSystemTop?: number;
     aosScreenHeight?: number;
-  };
+  } & TextStyle;
 export type ColorType = LightThemeType & DarkThemeType;
 export type ColorKey = keyof ColorType;
 export type VariableKey = keyof ThemeVariables;

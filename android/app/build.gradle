@@ -92,6 +92,8 @@ android {
                 abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
         }
+        testBuildType System.getProperty('testBuildType', 'debug')  // This will later be used to control the test apk build type
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     // externalNativeBuild {
     //     cmake {
@@ -154,4 +156,6 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    androidTestImplementation('com.wix:detox:+')
 }

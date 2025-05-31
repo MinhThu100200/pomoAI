@@ -1,0 +1,1 @@
+export const convertNewline = (str: string) => str.replace(/\\n/g, '\n');
