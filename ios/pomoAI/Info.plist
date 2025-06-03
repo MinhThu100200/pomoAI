@@ -50,11 +50,14 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Fonts/Pretendard-Bold.otf</string>
-		<string>Fonts/Pretendard-Regular.otf</string>
-		<string>Fonts/Pretendard-SemiBold.otf</string>
-		<string>Fonts/Pretendard-Medium.otf</string>
-		<string>Fonts/PretendardJP-Medium.otf</string>
+		<string>Pretendard-Bold.otf</string>
+		<string>Pretendard-Regular.otf</string>
+		<string>Pretendard-SemiBold.otf</string>
+		<string>Pretendard-Medium.otf</string>
+		<string>Nunito-Medium.ttf</string>
+		<string>Nunito-Regular.ttf</string>
+		<string>Nunito-Bold.ttf</string>
+		<string>Nunito-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>

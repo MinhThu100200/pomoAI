@@ -10,7 +10,7 @@ export const fontLang = {
     "vi-VN": "Effra Trial"
 }
 
-export type FontFamily = 'Effra Trial' | 'Pretendard' | 'Noto Sans';
+export type FontFamily = 'Effra Trial' | 'Pretendard' | 'Nunito';
 export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
 export type TranslationLang = 'en-Us' | 'vi-VN';
 
@@ -23,12 +23,12 @@ export const fontWeight: Record<FontWeight, string> = {
 export const letterSpacing: Record<FontFamily, number> = {
   'Effra Trial': 0,
   Pretendard: -0.007,
-  'Noto Sans': -0.01,
+  Nunito: -0.01,
 };
 
 export const translationLang: Record<TranslationLang, string> = {
   'en-Us': 'Pretendard',
-  'vi-VN': 'Noto Sans',
+  'vi-VN': 'Nunito',
 };
 
 interface Props extends AnimatedProps<TextProps> {
@@ -37,20 +37,21 @@ interface Props extends AnimatedProps<TextProps> {
   lang?: TranslationLang;
 }
 
-const Text = ({type, style, children, color, ...props} : Props) => {
+const Text = ({type, style, children, color, lang, ...props}: Props) => {
+  console.log('langdgdgdgdgđggd', lang);
   return (
-      <TextContainer style={[style]} type={type} color={color} {...props}>{
-          typeof children === 'string' ? convertNewline(children) : children
-      }</TextContainer>
-  )
-}
+    <TextContainer style={[style]} type={type} color={color} lang={lang} {...props}>
+      {typeof children === 'string' ? convertNewline(children) : children}
+    </TextContainer>
+  );
+};
 
 const TextContainer = styled(Reanimated.Text)<Props>`
-  ${({ type = 'callToAction/cta_md_r', color, theme, lang = 'en-US' }) => {
+  ${({type = 'callToAction/cta_md_r', color, theme, lang = 'vi-VN'}) => {
     return css`
       ${type &&
       `
-        ${IsAndroid ? `font-family: ${lang === 'en-US' ? `${theme[type]?.fontFamily}-${theme[type]?.weight}` : `${translationLang[lang as TranslationLang]}-${theme[type]?.weight}`};` : `font-family: ${lang === 'en-US' ? theme[type]?.fontFamily : translationLang[lang as TranslationLang]};`}
+        ${IsAndroid ? `font-family: ${lang === 'vi-VN' ? `${theme[type]?.fontFamily}-${theme[type]?.weight}` : `${translationLang[lang as TranslationLang]}-${theme[type]?.weight}`};` : `font-family: ${lang === 'vi-VN' ? theme[type]?.fontFamily : translationLang[lang as TranslationLang]};`}
         letter-spacing: ${letterSpacing[theme[type]?.fontFamily as FontFamily] * (theme[type]?.fontSize as number)}px;
         font-size: ${theme[type]?.fontSize}px;
         line-height: ${theme[type]?.lineHeight}px;
@@ -58,7 +59,6 @@ const TextContainer = styled(Reanimated.Text)<Props>`
         font-weight: ${fontWeight[theme[type]?.weight as FontWeight]};
 
       `}
-
       ${color && `color: ${theme[color as ColorKey] ?? color};`}
     `;
   }};
