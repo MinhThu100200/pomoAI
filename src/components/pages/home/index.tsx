@@ -1,25 +1,20 @@
-import {View, Text} from 'react-native';
+import {View, Text as TextNative} from 'react-native';
 import React from 'react';
-import {Text as MyText} from '@components/atoms/common/Text';
+import {Text} from '@components/atoms/common/Text';
 
 const HomeScreen = () => {
   const style = {fontFamily: 'Nunito', fontSize: 20};
 
   console.log('🖋️ Font test style:', style);
   return (
-    <View>
-      <Text testID="id_home_screen" style={{color: 'white'}}>
-        HomeScreen 11111
-      </Text>
-      <Text style={{color: 'white', fontFamily: 'Nunito-Bold'}}>light ---j yyyy</Text>
-      <Text style={{color: 'white', fontFamily: 'Cochin'}}>light ---j yyyy</Text>
-      <Text style={{color: 'white', fontFamily: 'Pretendard-Bold'}}>light jjjjj</Text>
-      <MyText color="white" lang="vi-VN">
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text color="white" lang="vi-VN">
         light - yyy
-      </MyText>
-      <MyText color="white" lang="en-Us">
+      </Text>
+      <Text color="white" lang="en-Us">
         Homescreen
-      </MyText>
+      </Text>
+      <TextNative style={{fontFamily: 'Nunito-Bold', fontSize: 30, color: 'white'}}>light - yyy</TextNative>
     </View>
   );
 };

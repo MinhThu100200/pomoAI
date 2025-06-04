@@ -1,14 +1,14 @@
 import {TextProps} from 'react-native';
 import styled, {css} from 'styled-components/native';
 import Reanimated, {AnimatedProps} from 'react-native-reanimated';
-import { IsAndroid } from '@constants';
-import { ColorKey, TextStyle, VariableKey } from '@theme';
-import { convertNewline } from '@utils/convertNewLine';
+import {IsAndroid} from '@constants';
+import {ColorKey, TextStyle, VariableKey} from '@theme';
+import {convertNewline} from '@utils/convertNewLine';
 
 export const fontLang = {
-    "en-Us": "Pretendard",
-    "vi-VN": "Effra Trial"
-}
+  'en-Us': 'Pretendard',
+  'vi-VN': 'Effra Trial',
+};
 
 export type FontFamily = 'Effra Trial' | 'Pretendard' | 'Nunito';
 export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
@@ -47,22 +47,19 @@ const Text = ({type, style, children, color, lang, ...props}: Props) => {
 };
 
 const TextContainer = styled(Reanimated.Text)<Props>`
-  ${({type = 'callToAction/cta_md_r', color, theme, lang = 'vi-VN'}) => {
+  ${({type = 'callToAction/cta_md_r', color, theme, lang = 'en-Us'}) => {
     return css`
       ${type &&
       `
-        ${IsAndroid ? `font-family: ${lang === 'vi-VN' ? `${theme[type]?.fontFamily}-${theme[type]?.weight}` : `${translationLang[lang as TranslationLang]}-${theme[type]?.weight}`};` : `font-family: ${lang === 'vi-VN' ? theme[type]?.fontFamily : translationLang[lang as TranslationLang]};`}
+        font-family: ${(lang === 'en-Us' ? theme[type]?.fontFamily : translationLang['vi-VN']) + '-' + theme[type]?.weight};
         letter-spacing: ${letterSpacing[theme[type]?.fontFamily as FontFamily] * (theme[type]?.fontSize as number)}px;
         font-size: ${theme[type]?.fontSize}px;
         line-height: ${theme[type]?.lineHeight}px;
-        line-height: ${theme?.screenMode}px;
         font-weight: ${fontWeight[theme[type]?.weight as FontWeight]};
-
       `}
       ${color && `color: ${theme[color as ColorKey] ?? color};`}
     `;
   }};
 `;
 
-
-export default Text
+export default Text;

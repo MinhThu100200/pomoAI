@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {RoutesNavigation} from './routesNavigation';
 import HomeScreen from '@components/pages/home';
 import ProfileScreen from '@components/pages/profile';
+import {Text} from '@components/atoms/common/Text';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,11 +51,12 @@ const BottomTabNavigation = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({focused}) => (
-            <BottomTabItemBox>
-              {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
-              <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
-              <Text>Home</Text>
-            </BottomTabItemBox>
+            <TabBarIconBox title="Home" focused={focused} />
+            // <BottomTabItemBox>
+            //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
+            //   <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
+            //   <Text>Home</Text>
+            // </BottomTabItemBox>
           ),
         }}
       />
@@ -63,15 +65,33 @@ const BottomTabNavigation = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => (
-            <BottomTabItemBox>
-              {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
-              <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
-              <Text>Profile</Text>
-            </BottomTabItemBox>
+            <TabBarIconBox title="Profile" focused={focused} />
+
+            // <BottomTabItemBox>
+            //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
+            //   <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
+            //   <Text type="label/lb_xs_r">Profile</Text>
+            // </BottomTabItemBox>
           ),
         }}
       />
     </Tab.Navigator>
+  );
+};
+
+interface ITabBarIcon {
+  activeIcon?: React.ReactNode;
+  inactiveIcon?: React.ReactNode;
+  title: string;
+  focused: boolean;
+}
+
+const TabBarIconBox = ({activeIcon, inactiveIcon, title = '', focused}: ITabBarIcon) => {
+  return (
+    <BottomTabItemBox>
+      <Icon/>
+      <Text type="label/lb_xs_r">{title}</Text>
+    </BottomTabItemBox>
   );
 };
 
@@ -81,5 +101,5 @@ const BottomTabItemBox = styled(View)`
   align-items: center;
   padding: 4px;
   width: 62px;
-  background-color: red;
+  background-color: white;
 `;

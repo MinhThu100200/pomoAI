@@ -20,7 +20,7 @@ function App(): React.JSX.Element {
   const [isReadyNavigation, setIsReadyNavigation] = useState(false);
   const [currentRouteName, setCurrentRouteName] = useState<RoutesNavigation>();
 
-  const routeNameRef = useRef<string>();
+  const routeNameRef = useRef<string>('');
 
   const containStyle = useMemo(
     () => ({
