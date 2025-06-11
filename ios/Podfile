@@ -1,12 +1,23 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+  def node_require(script)
+    # Resolve script with node to allow for hoisting
+    require Pod::Executable.execute_command('node', ['-p',
+      "require.resolve(
+        '#{script}',
+        {paths: [process.argv[1]]},
+      )", __dir__]).strip
+ end
+
+node_require('react-native/scripts/react_native_pods.rb')
+node_require('react-native-permissions/scripts/setup.rb')
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
+
+setup_permissions([
+  'AppTrackingTransparency',
+  'Notifications',
+])
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -14,40 +25,55 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'pomoAI' do
-  config = use_native_modules!
-  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+abstract_target 'SharedPods' do 
+  pod 'GoogleUtilities', :modular_headers => true
+  target 'pomoAI' do
+    config = use_native_modules!
+    pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+    pod 'FirebaseCore', :modular_headers => true
+    pod 'FirebaseCrashlytics', :modular_headers => true
+    pod 'FirebaseCoreExtension', :modular_headers => true
+    pod 'FirebaseInstallations', :modular_headers => true
+    pod 'GoogleDataTransport', :modular_headers => true
+    pod 'nanopb', :modular_headers => true
+    pod 'FirebaseSessions', :modular_headers => true
 
-  use_react_native!(
-    :path => config[:reactNativePath],
-    :hermes_enabled => true,
-    :fabric_enabled => false,
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
-  )
-
-  post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false
+    use_react_native!(
+      :path => config[:reactNativePath],
+      :hermes_enabled => true,
+      :fabric_enabled => false,
+      :app_path => "#{Pod::Config.instance.installation_root}/.."
     )
 
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-        
-        # Add these lines for Hermes
-        if target.name == 'hermes-engine'
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'HERMES_ENABLE_DEBUGGER=1'
-        end
-        
-        # Ensure proper C++ standard
-        if target.name == 'RNReanimated'
-          config.build_settings['C++_STANDARD'] = 'c++17'
+    post_install do |installer|
+      # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
+      react_native_post_install(
+        installer,
+        config[:reactNativePath],
+        :mac_catalyst_enabled => false
+      )
+
+      installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+          
+          # Add these lines for Hermes
+          if target.name == 'hermes-engine'
+            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+            config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'HERMES_ENABLE_DEBUGGER=1'
+          end
+          
+          # Ensure proper C++ standard
+          if target.name == 'RNReanimated'
+            config.build_settings['C++_STANDARD'] = 'c++17'
+          end
         end
       end
     end
+  end
+  target 'ImageNotification' do
+    use_modular_headers!
+    pod 'Firebase/Messaging'
+    pod 'SDWebImage' 
   end
 end

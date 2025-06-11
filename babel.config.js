@@ -11,6 +11,7 @@ module.exports = {
         alias: {
           '@': './src',
           '@api': './src/api',
+          '@assets': './src/assets',
           '@constants': './src/constants',
           '@provider': './src/provider',
           '@hooks': './src/hooks',

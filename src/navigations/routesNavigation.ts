@@ -3,13 +3,43 @@ export enum RoutesNavigation {
   WEBVIEW = 'webview',
   AUTH = 'auth',
   PROFILE = 'profile',
-  ONBOARDING = 'onBoarding',
+  ONBOARDING = 'onboarding',
+  LOGIN = 'login',
+  POMODORO = 'pomodoro',
+  NOTIFICATION = 'notification',
+  PROMPTGUIDE = 'promptguide',
+  HOME_TAB = 'hometab',
+  PLANNER_AI = 'plannerai',
 }
 
 export type RoutesNavigationKeys = keyof typeof RoutesNavigation;
 
 export type HomeParams = {
   route: RoutesNavigation.HOME;
+  params: undefined;
+};
+export type HomeTabParams = {
+  route: RoutesNavigation.HOME_TAB;
+  params: undefined;
+};
+export type PlannerAIParams = {
+  route: RoutesNavigation.PLANNER_AI;
+  params: undefined;
+};
+export type LoginParams = {
+  route: RoutesNavigation.LOGIN;
+  params: undefined;
+};
+export type NotificationParams = {
+  route: RoutesNavigation.NOTIFICATION;
+  params: undefined;
+};
+export type PomodoroParams = {
+  route: RoutesNavigation.POMODORO;
+  params: undefined;
+};
+export type PromptGuideParams = {
+  route: RoutesNavigation.PROMPTGUIDE;
   params: undefined;
 };
 export type onBoardingParams = {
@@ -33,4 +63,15 @@ export type AuthParams = {
   params: undefined;
 };
 
-export type RoutesNavigationWithParams = HomeParams | WebviewParams | AuthParams | onBoardingParams | ProfileParams;
+export type RoutesNavigationWithParams =
+  | HomeParams
+  | WebviewParams
+  | AuthParams
+  | onBoardingParams
+  | ProfileParams
+  | LoginParams
+  | PomodoroParams
+  | NotificationParams
+  | PromptGuideParams
+  | HomeTabParams
+  | PlannerAIParams;

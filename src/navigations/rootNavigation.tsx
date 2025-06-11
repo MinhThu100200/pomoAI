@@ -19,6 +19,10 @@ import {RoutesNavigation, RoutesNavigationWithParams} from './routesNavigation';
 import BottomTabNavigation from './bottomTabNavigation';
 import OnBoardingScreen from '@pages/onBoarding';
 import {AsParamListBase} from '@types';
+import LogInScreen from '@components/pages/authentication';
+import {useTheme} from 'styled-components/native';
+import {Icon} from '@components/atoms/common/Icon';
+import {IconBack} from '@assets/svg';
 
 export type DirectParamListBase = AsParamListBase<RoutesNavigationWithParams>;
 
@@ -32,6 +36,7 @@ const modalStackOption: NativeStackNavigationOptions = {
 
 const RootNavigation = () => {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
+  const theme = useTheme();
 
   const isHideHomeIndicator = IsIos ? true : true;
 
@@ -75,7 +80,7 @@ const RootNavigation = () => {
       autoHideHomeIndicator: isHideHomeIndicator ? false : false,
       headerBackTitleVisible: false,
       headerStyle: {
-        backgroundColor: 'black',
+        backgroundColor: theme['background/bgSecondary'],
       },
       headerLeft: () => (
         <ButtonHitSlop
@@ -84,7 +89,7 @@ const RootNavigation = () => {
               navigation.goBack();
             }
           }}>
-          <Text style={{color: 'white', fontSize: 24}}>{'<'}</Text>
+          <Icon icon={IconBack} width={20} height={20} color={theme['fill/fillPrimary']} />
         </ButtonHitSlop>
       ),
     };
@@ -104,10 +109,10 @@ const RootNavigation = () => {
     [],
   );
   return (
-    <NativeStack.Navigator initialRouteName={RoutesNavigation.HOME}>
+    <NativeStack.Navigator initialRouteName={RoutesNavigation.HOME_TAB}>
       <NativeStack.Group screenOptions={MainStackNavigationOptions}>
         <NativeStack.Screen
-          name={RoutesNavigation.HOME}
+          name={RoutesNavigation.HOME_TAB}
           component={BottomTabNavigation}
           options={{
             headerShown: false,
@@ -116,6 +121,15 @@ const RootNavigation = () => {
         <NativeStack.Screen
           name={RoutesNavigation.ONBOARDING}
           component={OnBoardingScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </NativeStack.Group>
+      <NativeStack.Group screenOptions={AuthStackNavigationOptions}>
+        <NativeStack.Screen
+          name={RoutesNavigation.AUTH}
+          component={LogInScreen}
           options={{
             headerShown: false,
           }}

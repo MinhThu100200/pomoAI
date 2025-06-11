@@ -1,20 +1,27 @@
-import {View, Text as TextNative} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Text} from '@components/atoms/common/Text';
+import analytics from '@react-native-firebase/analytics';
 
 const HomeScreen = () => {
-  const style = {fontFamily: 'Nunito', fontSize: 20};
-
-  console.log('🖋️ Font test style:', style);
+  const logTestEvent = async () => {
+    await analytics().logEvent('test_event', {
+      id: '123',
+      name: 'Test Item',
+      description: 'Testing Firebase Analytics',
+    });
+  };
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text color="white" lang="vi-VN">
-        light - yyy
+        light - vi
       </Text>
       <Text color="white" lang="en-Us">
-        Homescreen
+        Homescreen - en
       </Text>
-      <TextNative style={{fontFamily: 'Nunito-Bold', fontSize: 30, color: 'white'}}>light - yyy</TextNative>
+      <TouchableOpacity onPress={logTestEvent}>
+        <Text>hiiii</Text>
+      </TouchableOpacity>
     </View>
   );
 };

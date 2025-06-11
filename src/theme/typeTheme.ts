@@ -738,10 +738,9 @@ export type FontStyle = {
   weight: 'Regular' | 'Medium' | 'SemiBold';
 };
 
-type TypographyKey = `typography/${'bold' | 'regular'}/${string}` | `components/${string}`;
+export type TypographyKey = `typography/${'bold' | 'regular'}/${string}` | `components/${string}`;
 
 export type TextStyle = Record<TypographyKey, FontStyle>;
-
 
 export interface ThemeBaseType {
   'spacing/spHalf'?: number;
@@ -786,5 +785,8 @@ export type ThemeVariables = LightThemeType &
 export type ColorType = LightThemeType & DarkThemeType;
 export type ColorKey = keyof ColorType;
 export type VariableKey = keyof ThemeVariables;
-// export type TextStyleKey = keyof TextStyle;
 export type ThemeBaseTypeKey = keyof ThemeBaseType;
+
+export function createTextStyle<T extends TypographyKey>(data: Record<T, FontStyle>): Record<T, FontStyle> {
+  return data;
+}

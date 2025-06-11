@@ -5,7 +5,7 @@ import {useQueryClient} from '@tanstack/react-query';
 const RELEASE_LIMIT_TIME = 3 * 60 * 60 * 1000;
 const DEBUG_LIMIT_TIME = 3 * 60 * 1000;
 
-const LIMIT_TIME =RELEASE_LIMIT_TIME 
+const LIMIT_TIME = RELEASE_LIMIT_TIME; 
 
 const useBackgroundServiceRefresh = () => {
   const queryClient = useQueryClient();

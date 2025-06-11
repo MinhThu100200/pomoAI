@@ -2,17 +2,17 @@ import {TextProps} from 'react-native';
 import styled, {css} from 'styled-components/native';
 import Reanimated, {AnimatedProps} from 'react-native-reanimated';
 import {IsAndroid} from '@constants';
-import {ColorKey, TextStyle, VariableKey} from '@theme';
+import {ColorKey, FontStyle, TextStyle, TypographyKey, VariableKey} from '@theme';
 import {convertNewline} from '@utils/convertNewLine';
 
 export const fontLang = {
-  'en-Us': 'Pretendard',
+  'en-US': 'Pretendard',
   'vi-VN': 'Effra Trial',
 };
 
 export type FontFamily = 'Effra Trial' | 'Pretendard' | 'Nunito';
 export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
-export type TranslationLang = 'en-Us' | 'vi-VN';
+export type TranslationLang = 'en-US' | 'vi-VN';
 
 export const fontWeight: Record<FontWeight, string> = {
   Bold: '700',
@@ -27,7 +27,7 @@ export const letterSpacing: Record<FontFamily, number> = {
 };
 
 export const translationLang: Record<TranslationLang, string> = {
-  'en-Us': 'Pretendard',
+  'en-US': 'Pretendard',
   'vi-VN': 'Nunito',
 };
 
@@ -47,17 +47,19 @@ const Text = ({type, style, children, color, lang, ...props}: Props) => {
 };
 
 const TextContainer = styled(Reanimated.Text)<Props>`
-  ${({type = 'callToAction/cta_md_r', color, theme, lang = 'en-Us'}) => {
+  ${({type = 'typography/regular/h1', color, theme, lang = 'en-US'}) => {
+    const style = theme[type as TypographyKey] as FontStyle;
+    const {fontFamily, fontSize, letterSpacing: ls, lineHeight, weight} = style;
+
+    const computedFontFamily = (lang === 'en-US' ? fontFamily : translationLang['vi-VN']) + '-' + weight;
+
     return css`
-      ${type &&
-      `
-        font-family: ${(lang === 'en-Us' ? theme[type]?.fontFamily : translationLang['vi-VN']) + '-' + theme[type]?.weight};
-        letter-spacing: ${letterSpacing[theme[type]?.fontFamily as FontFamily] * (theme[type]?.fontSize as number)}px;
-        font-size: ${theme[type]?.fontSize}px;
-        line-height: ${theme[type]?.lineHeight}px;
-        font-weight: ${fontWeight[theme[type]?.weight as FontWeight]};
-      `}
-      ${color && `color: ${theme[color as ColorKey] ?? color};`}
+      font-family: ${computedFontFamily};
+      letter-spacing: ${letterSpacing[fontFamily as FontFamily] * fontSize}px;
+      font-size: ${fontSize}px;
+      line-height: ${lineHeight}px;
+      font-weight: ${fontWeight[weight as FontWeight]};
+      ${color ? `color: ${theme[color as ColorKey] ?? color};` : ''}
     `;
   }};
 `;

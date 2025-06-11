@@ -9,6 +9,9 @@ import {RoutesNavigation} from './routesNavigation';
 import HomeScreen from '@components/pages/home';
 import ProfileScreen from '@components/pages/profile';
 import {Text} from '@components/atoms/common/Text';
+import {Icon} from '@components/atoms/common/Icon';
+import {SvgProps} from 'react-native-svg';
+import {IconHome, IconProfile} from '@assets/svg';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +54,7 @@ const BottomTabNavigation = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({focused}) => (
-            <TabBarIconBox title="Home" focused={focused} />
+            <TabBarIconBox title="Home" focused={focused} inactiveIcon={IconHome} activeIcon={IconHome} />
             // <BottomTabItemBox>
             //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
             //   <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
@@ -65,7 +68,7 @@ const BottomTabNavigation = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({focused}) => (
-            <TabBarIconBox title="Profile" focused={focused} />
+            <TabBarIconBox title="Profile" focused={focused} inactiveIcon={IconProfile} activeIcon={IconProfile} />
 
             // <BottomTabItemBox>
             //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
@@ -80,8 +83,8 @@ const BottomTabNavigation = () => {
 };
 
 interface ITabBarIcon {
-  activeIcon?: React.ReactNode;
-  inactiveIcon?: React.ReactNode;
+  activeIcon: React.FC<SvgProps>;
+  inactiveIcon: React.FC<SvgProps>;
   title: string;
   focused: boolean;
 }
@@ -89,8 +92,9 @@ interface ITabBarIcon {
 const TabBarIconBox = ({activeIcon, inactiveIcon, title = '', focused}: ITabBarIcon) => {
   return (
     <BottomTabItemBox>
-      <Icon/>
-      <Text type="label/lb_xs_r">{title}</Text>
+      <Icon icon={IconHome} size={16} />
+      {/* <Icon icon={focused ? activeIcon : inactiveIcon} size={16} /> */}
+      <Text type="typography/regular/h1">{title}</Text>
     </BottomTabItemBox>
   );
 };

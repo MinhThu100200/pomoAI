@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266972538128",
+    "project_id": "pomoai-3db49",
+    "storage_bucket": "pomoai-3db49.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266972538128:android:c4d9141daef7acb9413195",
+        "android_client_info": {
+          "package_name": "com.pomoai"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfOr776eDTIo63b1XWBHSrjaMaoIyw9_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

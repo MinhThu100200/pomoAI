@@ -10,12 +10,15 @@ import ReactQueryProvider from '@provider/ReactQueryProvider';
 import {createNavigationContainerRef, DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {View} from 'react-native';
+import {useDeepLink} from '@hooks/useDeepLink';
+import analytics from '@react-native-firebase/analytics';
 
 export const navigationRef = createNavigationContainerRef<DirectParamListBase>();
 
 function App(): React.JSX.Element {
   const {theme} = useTheme();
+  const {linking} = useDeepLink();
+
   const statusBarColor = useMemo(() => theme['background/bgSecondary'], [theme]);
   const [isReadyNavigation, setIsReadyNavigation] = useState(false);
   const [currentRouteName, setCurrentRouteName] = useState<RoutesNavigation>();
@@ -25,7 +28,7 @@ function App(): React.JSX.Element {
   const containStyle = useMemo(
     () => ({
       flex: 1,
-      backgroundColor: 'red',
+      // backgroundColor: 'red',
       // paddingTop: isAndroidHorizontalModeOldVersion
       //   ? 0
       //   : systemBarHeight.topBar,
@@ -47,6 +50,12 @@ function App(): React.JSX.Element {
     }),
     [theme],
   );
+  const logScreenView = useCallback((previousRouteName: string, currentRouteName: string) => {
+    analytics().logScreenView({
+      screen_name: currentRouteName,
+      screen_class: currentRouteName,
+    });
+  }, []);
   const onReady = useCallback(() => {
     setIsReadyNavigation(true);
     setCurrentRouteName(navigationRef.getCurrentRoute()?.name as RoutesNavigation);
@@ -62,10 +71,11 @@ function App(): React.JSX.Element {
     if (previousRouteName === currentRouteName) return;
     if (!currentRouteName) return;
 
+    logScreenView(previousRouteName, currentRouteName);
     setCurrentRouteName(currentRouteName);
     routeNameRef.current = currentRouteName;
     // console.log('routeNameRef.current', routeNameRef.current);
-  }, []);
+  }, [logScreenView]);
   return (
     <GestureHandlerRootView style={containStyle}>
       <PortalProvider>
@@ -75,6 +85,7 @@ function App(): React.JSX.Element {
               <GlobalStyleProvider>
                 <NavigationContainer
                   ref={navigationRef}
+                  linking={linking}
                   theme={NavigationTheme}
                   onReady={onReady}
                   onStateChange={onStateChange}>
