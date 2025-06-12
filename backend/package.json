@@ -1,0 +1,22 @@
+{
+  "name": "pomoAI-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "vercel-deploy": "vercel deploy --prod",
+    "vercel-dev": "vercel dev",
+    "deploy-miss-ssl-check": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel deploy --prod",
+    "dev-miss-ssl-check": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel dev --debug"
+  },
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "@vercel/node": "^5.2.2",
+    "typescript": "^5.8.3",
+    "vercel": "^43.0.0"
+  }
+}

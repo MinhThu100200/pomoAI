@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3104A0B39FCCE4321238763E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
-		481C725D2DF9927700EC9D1E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 481C725C2DF9927700EC9D1E /* GoogleService-Info.plist */; };
+		4830541C2DFAB588009DF7E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4830541B2DFAB588009DF7E9 /* GoogleService-Info.plist */; };
 		485672FB2DED73D50037FECA /* Nunito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672FA2DED73D50037FECA /* Nunito-SemiBold.ttf */; };
 		485672FC2DED73D50037FECA /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672F72DED73D50037FECA /* Nunito-Bold.ttf */; };
 		485672FD2DED73D50037FECA /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672F92DED73D50037FECA /* Nunito-Regular.ttf */; };
@@ -55,7 +55,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = pomoAI/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = pomoAI/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2087EED29E4647040DB1556C /* libPods-SharedPods-ImageNotification.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SharedPods-ImageNotification.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		481C725C2DF9927700EC9D1E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4830541B2DFAB588009DF7E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "pomoAI/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		485672F72DED73D50037FECA /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
 		485672F82DED73D50037FECA /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		485672F92DED73D50037FECA /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 		13B07FAE1A68108700A75B9A /* pomoAI */ = {
 			isa = PBXGroup;
 			children = (
-				481C725C2DF9927700EC9D1E /* GoogleService-Info.plist */,
+				4830541B2DFAB588009DF7E9 /* GoogleService-Info.plist */,
 				48F34F2A2DE955C000C68889 /* fonts */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
@@ -290,7 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				481C725D2DF9927700EC9D1E /* GoogleService-Info.plist in Resources */,
+				4830541C2DFAB588009DF7E9 /* GoogleService-Info.plist in Resources */,
 				485672FB2DED73D50037FECA /* Nunito-SemiBold.ttf in Resources */,
 				485672FC2DED73D50037FECA /* Nunito-Bold.ttf in Resources */,
 				485672FD2DED73D50037FECA /* Nunito-Regular.ttf in Resources */,
@@ -692,7 +692,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -761,7 +764,10 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
