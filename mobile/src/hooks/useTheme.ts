@@ -1,6 +1,6 @@
 import { useThemeStore } from "@stores/index.";
 import { darkToken, lightToken } from "@theme/themes";
-import { useShallow } from "zustand/shallow";
+import {useShallow} from 'zustand/react/shallow';
 
 export const useTheme = () => {
   

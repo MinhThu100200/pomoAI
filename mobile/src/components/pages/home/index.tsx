@@ -2,37 +2,42 @@ import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Text} from '@components/atoms/common/Text';
 import analytics from '@react-native-firebase/analytics';
+import axios from 'axios';
+import Config from 'react-native-config';
 
 const HomeScreen = () => {
   const logTestEvent = async () => {
-    await analytics().logEvent('test_event', {
-      id: '123',
-      name: 'Test Item',
-      description: 'Testing Firebase Analytics',
-    });
+    // await analytics().logEvent('test_event', {
+    //   id: '123',
+    //   name: 'Test Item',
+    //   description: 'Testing Firebase Analytics',
+    // });
+    console.log('{Config.APP_TYPE}', Config.APP_TYPE);
   };
 
   const testAPI = async () => {
     try {
-      console.log('call api');
-      const response = await fetch('http://172.16.176.217:3000/api/promptAI', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await axios.post(
+        'https://www.pomoai.minhthunt.com/api/promptAI',
+        {
+          prompt: 'Tôi muốn học IELTS mỗi ngày 1 tiếng vào buổi tối',
         },
-        body: JSON.stringify({prompt: 'Tôi muốn học IELTS mỗi ngày 1 tiếng vào buổi tối'}),
-      });
-      console.log('response', response);
-      const data = await response.json();
-      console.log(data);
-    } catch (e) {
-      console.log('vercelllllll', e);
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+      console.log(res.data);
+    } catch (err) {
+      console.error('axios error', err);
     }
   };
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text color="white" lang="vi-VN">
-        light - vi
+        {Config.APP_TYPE} llllll
       </Text>
       <Text color="white" lang="en-US">
         Homescreen - en
