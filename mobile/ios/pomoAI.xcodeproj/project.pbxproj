@@ -23,6 +23,10 @@
 		48F34F332DE955FB00C68889 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48F34F2D2DE955FB00C68889 /* Pretendard-Regular.otf */; };
 		48F34F342DE955FB00C68889 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 48F34F2E2DE955FB00C68889 /* Pretendard-SemiBold.otf */; };
 		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+		805A31492E006C2D0098360F /* Config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 805A31482E006C2D0098360F /* Config.release.xcconfig */; };
+		805A314A2E006C2D0098360F /* Config.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 805A31482E006C2D0098360F /* Config.release.xcconfig */; };
+		805A314C2E006C430098360F /* Config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 805A314B2E006C430098360F /* Config.debug.xcconfig */; };
+		805A314D2E006C430098360F /* Config.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 805A314B2E006C430098360F /* Config.debug.xcconfig */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CC247FC4E0AEA64A1187AAD3 /* libPods-SharedPods-ImageNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 207CC0174D163EDBDC61F3D3 /* libPods-SharedPods-ImageNotification.a */; };
 /* End PBXBuildFile section */
@@ -89,6 +93,8 @@
 		48F34F2E2DE955FB00C68889 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		4E28343DECAB8536AE8F697C /* Pods-SharedPods-pomoAI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-pomoAI.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI.debug.xcconfig"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = pomoAI/AppDelegate.swift; sourceTree = "<group>"; };
+		805A31482E006C2D0098360F /* Config.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.release.xcconfig; sourceTree = "<group>"; };
+		805A314B2E006C430098360F /* Config.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.debug.xcconfig; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pomoAI/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC72BD7BF610AAC4FCA006BD /* Pods-SharedPods-pomoAI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-pomoAI.release.xcconfig"; path = "Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -195,6 +201,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				805A314B2E006C430098360F /* Config.debug.xcconfig */,
+				805A31482E006C2D0098360F /* Config.release.xcconfig */,
 				48D7CE4C2DFFD45D00DADB9F /* Config.xcconfig */,
 				13B07FAE1A68108700A75B9A /* pomoAI */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -353,7 +361,9 @@
 				48D7CE4E2DFFD45D00DADB9F /* Config.xcconfig in Resources */,
 				4887D2392DFBB92D0033FB98 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				805A314C2E006C430098360F /* Config.debug.xcconfig in Resources */,
 				3104A0B39FCCE4321238763E /* PrivacyInfo.xcprivacy in Resources */,
+				805A31492E006C2D0098360F /* Config.release.xcconfig in Resources */,
 				48F34F302DE955FB00C68889 /* Pretendard-Medium.otf in Resources */,
 				48F34F322DE955FB00C68889 /* Pretendard-Bold.otf in Resources */,
 				48F34F332DE955FB00C68889 /* Pretendard-Regular.otf in Resources */,
@@ -366,6 +376,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D7CE4D2DFFD45D00DADB9F /* Config.xcconfig in Resources */,
+				805A314A2E006C2D0098360F /* Config.release.xcconfig in Resources */,
+				805A314D2E006C430098360F /* Config.debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,7 +954,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48D7CE4C2DFFD45D00DADB9F /* Config.xcconfig */;
+			baseConfigurationReference = 805A314B2E006C430098360F /* Config.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1011,10 +1023,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -1024,7 +1033,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48D7CE4C2DFFD45D00DADB9F /* Config.xcconfig */;
+			baseConfigurationReference = 805A31482E006C2D0098360F /* Config.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1085,10 +1094,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

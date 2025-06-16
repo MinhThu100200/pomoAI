@@ -63,6 +63,7 @@ vendor/bundle/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+/mobile/.yarn
 
 ######################################
 # 🖥️ Vercel Serverless Functions (backend/)
