@@ -37,6 +37,10 @@ abstract_target 'SharedPods' do
     pod 'GoogleDataTransport', :modular_headers => true
     pod 'nanopb', :modular_headers => true
     pod 'FirebaseSessions', :modular_headers => true
+    pod 'FirebaseAuth', :modular_headers => true
+    pod 'FirebaseAuthInterop', :modular_headers => true
+    pod 'FirebaseAppCheckInterop', :modular_headers => true
+    pod 'RecaptchaInterop', :modular_headers => true
 
     use_react_native!(
       :path => config[:reactNativePath],

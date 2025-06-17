@@ -1,4 +1,4 @@
-import {TouchableOpacity, View} from 'react-native';
+import {Linking, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Text} from '@components/atoms/common/Text';
 import analytics from '@react-native-firebase/analytics';
@@ -13,6 +13,18 @@ const HomeScreen = () => {
     //   description: 'Testing Firebase Analytics',
     // });
     console.log('{Config.APP_TYPE}', Config.APP_TYPE);
+  };
+
+  const login = () => {
+    const GOOGLE_CLIENT_ID = Config.GOOGLE_CLIENT_ID;
+    const REDIRECT_URI = `${Config.API_BASE_URL}/api/auth/google/callback`;
+    const SCOPE = 'openid email profile';
+
+    const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${encodeURIComponent(
+      REDIRECT_URI,
+    )}&response_type=code&scope=${encodeURIComponent(SCOPE)}`;
+
+    Linking.openURL(url);
   };
 
   const testAPI = async () => {

@@ -2,7 +2,8 @@ import {DirectParamListBase} from '@navigation/rootNavigation';
 import {RoutesNavigation} from '@navigation/routesNavigation';
 import messaging from '@react-native-firebase/messaging';
 import {LinkingOptions} from '@react-navigation/native';
-import {Linking} from 'react-native';
+import {Alert, Linking} from 'react-native';
+import auth from '@react-native-firebase/auth';
 
 const SCHEMA = 'pomoai';
 
@@ -50,6 +51,26 @@ const buildDeepLinkFromNotificationData = (data: {navigationId?: string}) => {
       return `${SCHEMA}://${RoutesNavigation.HOME_TAB}/`;
   }
 };
+
+const getTokenFromUrl = (url: string): string | undefined => {
+  try {
+    return new URL(url).searchParams.get('token') || undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+async function handleLoginFromUrl(token: string | undefined) {
+  try {
+    if (token && !auth().currentUser) {
+      await auth().signInWithCustomToken(token);
+      console.log('✅ Firebase login successful');
+    }
+  } catch (e) {
+    console.error('❌ Error parsing deep link or signing in:', e);
+    Alert.alert('Đăng nhập thất bại', 'Không thể đăng nhập bằng liên kết');
+  }
+}
 export const useDeepLink = () => {
   const linking: LinkingOptions<DirectParamListBase> = {
     prefixes,
@@ -57,6 +78,11 @@ export const useDeepLink = () => {
     getInitialURL: async () => {
       const url = await Linking.getInitialURL();
       if (typeof url === 'string') {
+        const token = getTokenFromUrl(url);
+        if (token) {
+          handleLoginFromUrl(token);
+          return null;
+        }
         return url;
       }
       //getInitialNotification: When the application is opened from a quit state.
@@ -67,7 +93,14 @@ export const useDeepLink = () => {
       }
     },
     subscribe(listener: (url: string) => void) {
-      const onReceiveURL = ({url}: {url: string}) => listener(url);
+      const onReceiveURL = ({url}: {url: string}) => {
+        const token = getTokenFromUrl(url);
+        if (token) {
+          handleLoginFromUrl(token);
+        } else {
+          listener(url);
+        }
+      };
 
       // Listen to incoming links from deep linking
       const linkingSubscription = Linking.addEventListener('url', onReceiveURL);

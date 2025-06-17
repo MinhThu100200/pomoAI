@@ -398,7 +398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# Select env file based on configuration\nif [ \"$CONFIGURATION\" = \"Debug Dev\" ]; then\n  export ENVFILE=.env.dev\nelif [ \"$CONFIGURATION\" = \"Release Prod\" ]; then\n  export ENVFILE=.env.prod\nelse\n  export ENVFILE=.env\nfi\n\necho \"Using ENVFILE=$ENVFILE\"\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+			shellScript = "set -e\n\necho \"SCHEME: $SCHEME\"\necho \"CONFIGURATION: $CONFIGURATION\"\n\nif [[ \"$SCHEME\" == *\"Dev\"* ]]; then\n  export ENVFILE=.env.dev\nelif [[ \"$SCHEME\" == *\"Prod\"* ]]; then\n  export ENVFILE=.env.prod\nelse\n  export ENVFILE=.env\nfi\n\necho \"Using ENVFILE=$ENVFILE\"\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
 		0410A9AE6F7B4B9AB8C72B4D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
