@@ -1,0 +1,14 @@
+{
+    "private": true,
+    "scripts": {
+        "clean": "rm -rf node_modules yarn.clock mobile/node_modules mobile/ios/Pods mobile/ios/Podfile.lock",
+        "install:all": "yarn && cd mobile && yarn && cd ios && pod install"
+    },
+    "workspaces": {
+        "packages": [
+            "shared-types",
+            "backend",
+            "mobile"
+        ]       
+    }
+}

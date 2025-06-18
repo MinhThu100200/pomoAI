@@ -1,8 +1,14 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,                     
     "jsx": "react-native",
-    "baseUrl": ".",
+    "baseUrl": ".", // Cho phép alias path
     "paths": {
       "@*": ["src/*", "../src/*"],
       "@api/*": ["src/api/*"],
@@ -16,13 +22,13 @@
       "@types/*": ["src/types/*"],
       "@navigation/*": ["src/navigations/*"],
       "@components/*": ["src/components/*"],
-      "@pages/*": ["src/components/pages/*"]
+      "@pages/*": ["src/components/pages/*"],
+      "@pomoai/shared-types": ["../shared-types/src"]
     }
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",
-    "../types"                    // nếu dùng types chung
+    "**/*.tsx",              
   ],
   "exclude": [
     "node_modules",
@@ -31,3 +37,4 @@
     "jest.config.js"
   ]
 }
+

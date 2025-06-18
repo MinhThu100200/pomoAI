@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "npx react-native run-ios --scheme=pomoAI",
     "android:dev": "react-native run-android --mode=debug",
     "android:prod": "react-native run-android --mode=release",
     "ios:dev": "npx react-native run-ios --scheme=pomoAI-Dev",
@@ -87,7 +87,8 @@
     "react-native-screens": "^4.11.1",
     "react-native-svg": "^15.12.0",
     "styled-components": "^6.1.17",
-    "zustand": "^5.0.3"
+    "zustand": "^5.0.3",
+    "@pomoai/shared-types": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
