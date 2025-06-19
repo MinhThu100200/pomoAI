@@ -1,4 +1,3 @@
-
 const Prompt = {
   promptGuide: async () => {},
   promptSchedule: async () => {},

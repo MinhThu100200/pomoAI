@@ -36,14 +36,13 @@ allprojects {
     }
     project.pluginManager.withPlugin("com.facebook.react") {
         react {
-            reactNativeDir = rootProject.file("../../../node_modules/react-native/")
-            codegenDir = rootProject.file("../../../node_modules/react-native-codegen/")
+            reactNativeDir = rootProject.file("../../node_modules/react-native/")
+            codegenDir = rootProject.file("../../node_modules/@react-native/codegen/")
         }
     }
 }
 
 project.ext.react = [
-  entryFile: file("index.js"),
   enableHermes: true  // Disable Hermes for debugging
 ]
 

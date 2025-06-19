@@ -28,7 +28,7 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx",              
+    "**/*.tsx", "src/i18n/resources.ts",              
   ],
   "exclude": [
     "node_modules",

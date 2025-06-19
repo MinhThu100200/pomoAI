@@ -1,4 +1,4 @@
-export default resources = {
+const resources = {
   'vi-VN': {
     translation: {
       home: {
@@ -19,4 +19,6 @@ export default resources = {
       },
     },
   },
-};
+} as const;
+
+export default resources;

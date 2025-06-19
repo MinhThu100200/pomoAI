@@ -1,6 +1,7 @@
 import axios, {AxiosError, AxiosRequestConfig} from 'axios';
 import Config from 'react-native-config';
 import QueryString from 'qs';
+
 import {authRequest, authRequestError, authResponse, authResponseError} from './interceptors';
 
 export const instance = axios.create({

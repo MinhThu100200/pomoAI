@@ -9,6 +9,8 @@ PODS:
   - DoubleConversion (1.1.6)
   - fast_float (6.1.4)
   - FBLazyVector (0.79.2)
+  - Firebase (11.13.0):
+    - Firebase/Core (= 11.13.0)
   - Firebase/Analytics (11.13.0):
     - Firebase/Core
   - Firebase/Auth (11.13.0):
@@ -2336,6 +2338,7 @@ DEPENDENCIES:
   - DoubleConversion (from `../../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - fast_float (from `../../node_modules/react-native/third-party-podspecs/fast_float.podspec`)
   - FBLazyVector (from `../../node_modules/react-native/Libraries/FBLazyVector`)
+  - Firebase
   - Firebase/Messaging
   - FirebaseAppCheckInterop
   - FirebaseAuth
@@ -2777,6 +2780,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: c758bfb934100bb4bf9cbaccb52557cee35e8bdf
 
-PODFILE CHECKSUM: 2ada42d9627c0371e6d90e5910fd195ea624e367
+PODFILE CHECKSUM: 421baf431511018f915b503db7354ae21d7fce07
 
 COCOAPODS: 1.16.2

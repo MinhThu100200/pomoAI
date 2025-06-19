@@ -23,17 +23,22 @@ setup_permissions([
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
-  use_frameworks! :linkage => linkage.to_sym
+  # use_frameworks! :linkage => linkage.to_sym
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 end
 
 abstract_target 'SharedPods' do
-  # ⚠️ Remove `modular_headers` from Firebase or it'll break linking
-  pod 'GoogleUtilities', :modular_headers => true
 
+  pod 'GoogleUtilities', :modular_headers => true
+  
   target 'pomoAI' do
     config = use_native_modules!
+    
 
     # Firebase dependencies
+    pod 'Firebase', :modular_headers => true
+    pod 'FirebaseAuth', :modular_headers => true
     pod 'FirebaseCore', :modular_headers => true
     pod 'FirebaseCrashlytics', :modular_headers => true
     pod 'FirebaseCoreExtension', :modular_headers => true
@@ -41,7 +46,6 @@ abstract_target 'SharedPods' do
     pod 'GoogleDataTransport', :modular_headers => true
     pod 'nanopb', :modular_headers => true
     pod 'FirebaseSessions', :modular_headers => true
-    pod 'FirebaseAuth', :modular_headers => true
     pod 'FirebaseAuthInterop', :modular_headers => true
     pod 'FirebaseAppCheckInterop', :modular_headers => true
     pod 'RecaptchaInterop', :modular_headers => true
@@ -62,14 +66,15 @@ abstract_target 'SharedPods' do
         config[:reactNativePath],
         :mac_catalyst_enabled => false
       )
-
+  
       installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
+          config.build_settings['SWIFT_VERSION'] = '5.0'
          
           # ✅ Fix: arm64 simulator
           config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
           if ['FirebaseAuth', 'FirebaseCore', 'FirebaseInstallations', 'FirebaseMessaging'].include? target.name
-            config.build_settings['SWIFT_VERSION'] = '5.0'
+            config.build_settings['DEFINES_MODULE'] = 'YES'
           end
 
           # ✅ Hermes debugger support
