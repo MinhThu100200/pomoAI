@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "npx react-native run-ios --scheme=pomoAI",
+    "ios": "react-native run-ios --scheme=pomoAI",
     "android:dev": "react-native run-android --mode=debug",
     "android:prod": "react-native run-android --mode=release",
     "ios:dev": "npx react-native run-ios --scheme=pomoAI-Dev",
@@ -59,7 +59,7 @@
     "@react-native-community/netinfo": "^11.4.1",
     "@react-native-firebase/analytics": "^22.2.0",
     "@react-native-firebase/app": "^22.2.0",
-    "@react-native-firebase/auth": "^22.2.1",
+    "@react-native-firebase/auth": "^22.2.0",
     "@react-native-firebase/crashlytics": "^22.2.0",
     "@react-native-firebase/messaging": "^22.2.0",
     "@react-native-google-signin/google-signin": "^14.0.1",
