@@ -249,11 +249,11 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				489ECE532DF29D32004A755F /* Embed Foundation Extensions */,
-				0FA5C2F63F2EB51C94986581 /* [CP] Embed Pods Frameworks */,
 				2E567476103BEDBEE43E10CC /* [CP] Copy Pods Resources */,
 				D95495F4E303A602C9AF7D1C /* [CP-User] [RNFB] Core Configuration */,
 				2C5B9B6542C913AFF6FCB2B8 /* [CP-User] [RNFB] Crashlytics Configuration */,
 				48D7CDFF2DFFC45900DADB9F /* Load .env */,
+				BA46A463151E2209C904E973 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -422,23 +422,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0FA5C2F63F2EB51C94986581 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2C5B9B6542C913AFF6FCB2B8 /* [CP-User] [RNFB] Crashlytics Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -487,6 +470,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "ENV_NAME=${ENV:-dev}  # fallback only if ENV not set in Build Settings\n\nENV_PATH=\"$PROJECT_DIR/../.env.${ENV_NAME}\"\necho \"Looking for env file at: $ENV_PATH\"\n\nif [ -f \"$ENV_PATH\" ]; then\n  echo \"✅ Using $ENV_PATH\"\n  export ENVFILE=\".env.${ENV_NAME}\"\nelse\n  echo \"❌ ERROR: $ENV_PATH does not exist. Please create the file or set ENV correctly.\"\n  exit 1\nfi\n";
+		};
+		BA46A463151E2209C904E973 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SharedPods-pomoAI/Pods-SharedPods-pomoAI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		D95495F4E303A602C9AF7D1C /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
