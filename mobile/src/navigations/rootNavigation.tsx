@@ -1,28 +1,21 @@
-import { IsIos } from "@constants";
-import { NAVIGATION_TYPE } from "@constants/navigationType";
-import { NavigationEvent } from "@hooks/eventEmitter";
-import NavigationEventEmitter from "@hooks/eventEmitter/useNavigationEvent/navigationEventEmitter";
-
-import {
-    NavigationProp,
-    ParamListBase,
-    RouteProp,
-    StackActions,
-    useNavigation
-} from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import { useCallback, useEffect, useMemo } from "react";
-import { Text, TouchableOpacity } from "react-native";
-import styled from 'styled-components';
-
-import {RoutesNavigation, RoutesNavigationWithParams} from './routesNavigation';
-import BottomTabNavigation from './bottomTabNavigation';
-import OnBoardingScreen from '@pages/onBoarding';
-import {AsParamListBase} from '@types';
-import LogInScreen from '@components/pages/authentication';
-import {useTheme} from 'styled-components/native';
-import {Icon} from '@components/atoms/common/Icon';
 import {IconBack} from '@assets/svg';
+import {Icon} from '@components/atoms/common/Icon';
+import LogInScreen from '@components/pages/authentication';
+import {IsIos} from '@constants';
+import {NAVIGATION_TYPE} from '@constants/navigationType';
+import {NavigationEvent} from '@hooks/eventEmitter';
+import NavigationEventEmitter from '@hooks/eventEmitter/useNavigationEvent/navigationEventEmitter';
+import OnBoardingScreen from '@pages/onBoarding';
+import {NavigationProp, ParamListBase, RouteProp, StackActions, useNavigation} from '@react-navigation/native';
+import {createNativeStackNavigator, NativeStackNavigationOptions} from '@react-navigation/native-stack';
+import {AsParamListBase} from '@types';
+import {useCallback, useEffect, useMemo} from 'react';
+import {TouchableOpacity} from 'react-native';
+import styled from 'styled-components';
+import {useTheme} from 'styled-components/native';
+
+import BottomTabNavigation from './bottomTabNavigation';
+import {RoutesNavigation, RoutesNavigationWithParams} from './routesNavigation';
 
 export type DirectParamListBase = AsParamListBase<RoutesNavigationWithParams>;
 
@@ -72,6 +65,16 @@ const RootNavigation = () => {
   }, [eventCallback]);
 
   const MainStackNavigationOptions: NativeStackNavigationOptions = useMemo(() => {
+    const headerLeft = () => (
+      <ButtonHitSlop
+        onPress={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          }
+        }}>
+        <Icon icon={IconBack} width={20} height={20} color={theme['icon/neutrals/primary']} />
+      </ButtonHitSlop>
+    );
     return {
       title: '',
       animation: 'slide_from_right',
@@ -80,20 +83,11 @@ const RootNavigation = () => {
       autoHideHomeIndicator: isHideHomeIndicator ? false : false,
       headerBackTitleVisible: false,
       headerStyle: {
-        backgroundColor: theme['background/bgSecondary'],
+        backgroundColor: theme['bg/neutrals/primary'],
       },
-      headerLeft: () => (
-        <ButtonHitSlop
-          onPress={() => {
-            if (navigation.canGoBack()) {
-              navigation.goBack();
-            }
-          }}>
-          <Icon icon={IconBack} width={20} height={20} color={theme['fill/fillPrimary']} />
-        </ButtonHitSlop>
-      ),
+      headerLeft: headerLeft,
     };
-  }, []);
+  }, [isHideHomeIndicator]);
 
   const AuthStackNavigationOptions = useMemo(
     () =>
@@ -146,4 +140,3 @@ const ButtonHitSlop = styled(TouchableOpacity)`
   justify-content: center;
   align-items: center;
 `;
-

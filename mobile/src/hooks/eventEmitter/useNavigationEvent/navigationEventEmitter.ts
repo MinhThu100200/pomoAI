@@ -11,15 +11,7 @@ class NavigationEventEmitter {
     DeviceEventEmitter.removeAllListeners(this.NAVIGATION_EVENT_NAME);
   }
 
-  navigate({
-    action,
-    navigateName,
-    params,
-  }: {
-    action: string;
-    navigateName: string;
-    params?: any;
-  }) {
+  navigate({action, navigateName, params}: {action: string; navigateName: string; params?: any}) {
     DeviceEventEmitter.emit(this.NAVIGATION_EVENT_NAME, {
       action,
       navigateName,

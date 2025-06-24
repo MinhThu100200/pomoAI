@@ -1,9 +1,10 @@
 import {View, Text, TextInput, BackHandler} from 'react-native';
 import React, {PropsWithChildren, useEffect} from 'react';
 import useBackgroundServiceRefresh from '@hooks/useBackgroundServiceRefresh';
-import { IsAndroid } from '@constants';
+import {IsAndroid} from '@constants';
 import {useConfigNotification} from '@hooks/useConfigNotification';
 import {INIT_CALL_PERMISSIONS, usePermissions} from '@hooks/usePermission';
+import {getTokenFirebase} from '@notification';
 
 const InitializationProvider = ({children}: PropsWithChildren) => {
   // prevent font scaling based on system settings
@@ -23,8 +24,8 @@ const InitializationProvider = ({children}: PropsWithChildren) => {
   // handle cache when app resumes
   useBackgroundServiceRefresh();
 
-  // check permission
-  usePermissions(INIT_CALL_PERMISSIONS);
+  // check permission for notification
+  usePermissions(INIT_CALL_PERMISSIONS, getTokenFirebase);
 
   // handle back => android
   useEffect(() => {

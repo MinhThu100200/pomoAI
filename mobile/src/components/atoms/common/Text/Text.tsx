@@ -1,16 +1,10 @@
-import {TextProps} from 'react-native';
-import styled, {css} from 'styled-components/native';
-import Reanimated, {AnimatedProps} from 'react-native-reanimated';
-import {IsAndroid} from '@constants';
-import {ColorKey, FontStyle, TextStyle, TypographyKey, VariableKey} from '@theme';
+import {ColorKey, FontStyle, TextStyle, TypographyKey} from '@theme';
 import {convertNewline} from '@utils/convertNewLine';
+import {TextProps} from 'react-native';
+import Reanimated, {AnimatedProps} from 'react-native-reanimated';
+import styled, {css} from 'styled-components/native';
 
-export const fontLang = {
-  'en-US': 'Pretendard',
-  'vi-VN': 'Effra Trial',
-};
-
-export type FontFamily = 'Effra Trial' | 'Pretendard' | 'Nunito';
+export type FontFamily = 'Pretendard' | 'Nunito';
 export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
 export type TranslationLang = 'en-US' | 'vi-VN';
 
@@ -21,7 +15,6 @@ export const fontWeight: Record<FontWeight, string> = {
 };
 
 export const letterSpacing: Record<FontFamily, number> = {
-  'Effra Trial': 0,
   Pretendard: -0.007,
   Nunito: -0.01,
 };
@@ -38,7 +31,6 @@ interface Props extends AnimatedProps<TextProps> {
 }
 
 const Text = ({type, style, children, color, lang, ...props}: Props) => {
-  console.log('langdgdgdgdgđggd', lang);
   return (
     <TextContainer style={[style]} type={type} color={color} lang={lang} {...props}>
       {typeof children === 'string' ? convertNewline(children) : children}
@@ -50,12 +42,11 @@ const TextContainer = styled(Reanimated.Text)<Props>`
   ${({type = 'typography/regular/h1', color, theme, lang = 'en-US'}) => {
     const style = theme[type as TypographyKey] as FontStyle;
     const {fontFamily, fontSize, letterSpacing: ls, lineHeight, weight} = style;
-
     const computedFontFamily = (lang === 'en-US' ? fontFamily : translationLang['vi-VN']) + '-' + weight;
 
     return css`
       font-family: ${computedFontFamily};
-      letter-spacing: ${letterSpacing[fontFamily as FontFamily] * fontSize}px;
+      letter-spacing: ${ls}px;
       font-size: ${fontSize}px;
       line-height: ${lineHeight}px;
       font-weight: ${fontWeight[weight as FontWeight]};

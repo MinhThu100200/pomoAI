@@ -22,6 +22,8 @@ module.exports = {
           '@navigation': './src/navigations',
           '@components': './src/components',
           '@pages': './src/components/pages',
+          '@i18n': './src/i18n',
+          '@notification': './src/notification',
         },
       },
     ],

@@ -1,5 +1,4 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-
 import {PortalProvider} from '@gorhom/portal';
 import {useTheme} from '@hooks/useTheme';
 import RootNavigation, {DirectParamListBase} from '@navigation/rootNavigation';
@@ -12,6 +11,8 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {useDeepLink} from '@hooks/useDeepLink';
 import analytics from '@react-native-firebase/analytics';
+import {I18nextProvider} from 'react-i18next';
+import i18n from '@i18n/i18n';
 
 export const navigationRef = createNavigationContainerRef<DirectParamListBase>();
 
@@ -19,7 +20,7 @@ function App(): React.JSX.Element {
   const {theme} = useTheme();
   const {linking} = useDeepLink();
 
-  const statusBarColor = useMemo(() => theme['background/bgSecondary'], [theme]);
+  const statusBarColor = useMemo(() => theme['bg/neutrals/secondary'], [theme]);
   const [isReadyNavigation, setIsReadyNavigation] = useState(false);
   const [currentRouteName, setCurrentRouteName] = useState<RoutesNavigation>();
 
@@ -45,7 +46,7 @@ function App(): React.JSX.Element {
       ...DefaultTheme,
       colors: {
         ...DefaultTheme.colors,
-        background: theme['background/bgSecondary'],
+        background: theme['bg/neutrals/secondary'],
       },
     }),
     [theme],
@@ -82,16 +83,18 @@ function App(): React.JSX.Element {
         <ReactQueryProvider>
           <InitializationProvider>
             <SafeAreaProvider>
-              <GlobalStyleProvider>
-                <NavigationContainer
-                  ref={navigationRef}
-                  linking={linking}
-                  theme={NavigationTheme}
-                  onReady={onReady}
-                  onStateChange={onStateChange}>
-                  <RootNavigation />
-                </NavigationContainer>
-              </GlobalStyleProvider>
+              <I18nextProvider i18n={i18n}>
+                <GlobalStyleProvider>
+                  <NavigationContainer
+                    ref={navigationRef}
+                    linking={linking}
+                    theme={NavigationTheme}
+                    onReady={onReady}
+                    onStateChange={onStateChange}>
+                    <RootNavigation />
+                  </NavigationContainer>
+                </GlobalStyleProvider>
+              </I18nextProvider>
             </SafeAreaProvider>
           </InitializationProvider>
         </ReactQueryProvider>

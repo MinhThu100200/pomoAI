@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { Platform } from 'react-native';
-import { checkMultiple, Permission, PERMISSIONS, PermissionStatus, requestMultiple } from 'react-native-permissions';
+import {useEffect, useState} from 'react';
+import {Platform} from 'react-native';
+import {checkMultiple, Permission, PERMISSIONS, PermissionStatus, requestMultiple} from 'react-native-permissions';
 
 type PermissionResults = Record<Permission, PermissionStatus>;
-
 
 const permissionGranted = (status: PermissionResults, limitedCallback?: () => void) => {
   return Object.values(status).every(result => {
@@ -24,17 +23,21 @@ export const INIT_CALL_PERMISSIONS: Permission[] = Platform.select({
   default: [],
 });
 
-export const usePermissions = (perms: Permission[]) => {
+export const usePermissions = (perms: Permission[], callback?: () => void) => {
   const [state, setState] = useState<'pending' | 'granted' | 'rejected'>('pending');
   useEffect(() => {
     const checkAndRequest = async () => {
       const resultCheckPermissions = await checkMultiple(perms);
       const isAllGranted = permissionGranted(resultCheckPermissions);
       if (isAllGranted) {
+        callback && callback();
         return setState('granted');
       }
       const resultRequestPermissions = await requestMultiple(perms);
       const isGranted = permissionGranted(resultRequestPermissions);
+      if (callback && isGranted) {
+        callback();
+      }
       setState(isGranted ? 'granted' : 'rejected');
     };
     checkAndRequest();

@@ -17,7 +17,7 @@ i18n.use(initReactI18next).init({
     suffix: '}',
     escapeValue: false,
   },
-  parseMissingKeyHandler(key, defaultValue) {
+  parseMissingKeyHandler(key: string, defaultValue: any) {
     const keySeparator = '~~';
     const value = key.includes(keySeparator) ? key.split(keySeparator)[1] : key;
 
@@ -26,4 +26,3 @@ i18n.use(initReactI18next).init({
 });
 
 export default i18n;
-  
