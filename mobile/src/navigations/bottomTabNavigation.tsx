@@ -1,17 +1,21 @@
-import {View} from 'react-native';
-import React from 'react';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {useTheme} from '@hooks/useTheme';
-import {IsIos} from '@constants';
-import styled from 'styled-components';
-import {RoutesNavigation} from './routesNavigation';
-import HomeScreen from '@components/pages/home';
-import ProfileScreen from '@components/pages/profile';
-import {Text} from '@components/atoms/common/Text';
-import {Icon} from '@components/atoms/common/Icon';
-import {SvgProps} from 'react-native-svg';
 import {IconHome, IconProfile} from '@assets/svg';
+import {Icon} from '@components/atoms/common/Icon';
+import {Text} from '@components/atoms/common/Text';
+import HomeScreen from '@components/pages/home';
+import PlannerAIScreen from '@components/pages/plannerAI';
+import PomodoroScreen from '@components/pages/pomodoro';
+import ProfileScreen from '@components/pages/profile';
+import PromptGuideScreen from '@components/pages/promptGuide';
+import {IsIos} from '@constants';
+import {useTheme} from '@hooks/useTheme';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React from 'react';
+import {View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {SvgProps} from 'react-native-svg';
+import styled from 'styled-components';
+
+import {RoutesNavigation} from './routesNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,13 +23,30 @@ const BottomTabNavigation = () => {
   const insets = useSafeAreaInsets();
   const {theme} = useTheme();
 
-  const tabColor = (focused: boolean) => (focused ? theme['accent/accentPrimary'] : theme['fill/fillTertiary']);
+  const tabColor = (focused: boolean) => (focused ? theme['badge/ghost/blue/bg'] : theme['text/primary']);
+
+  const tabItem = ({focused, title, inactiveIcon, activeIcon}: ITabBarIcon) => (
+    <TabBarIconBox title={title} focused={focused} inactiveIcon={inactiveIcon} activeIcon={activeIcon} />
+  );
+
+  const defaultHeader = () => {
+    return (
+      IsIos && (
+        <View
+          style={{
+            height: insets.top,
+            backgroundColor: theme['bg/neutrals/secondary'],
+          }}
+        />
+      )
+    );
+  };
 
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: theme['container/ctnBgQuaternary'],
+          backgroundColor: theme['icon/soft/brand'],
           alignItems: 'center',
           borderTopWidth: 0,
         },
@@ -36,46 +57,44 @@ const BottomTabNavigation = () => {
         },
         tabBarLabelStyle: {display: 'none'},
         tabBarHideOnKeyboard: true,
-        header: () => {
-          return (
-            IsIos && (
-              <View
-                style={{
-                  height: insets.top,
-                  backgroundColor: theme['background/bgSecondary'],
-                }}
-              />
-            )
-          );
-        },
+        header: defaultHeader,
       }}>
       <Tab.Screen
         name={RoutesNavigation.HOME}
         component={HomeScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <TabBarIconBox title="Home" focused={focused} inactiveIcon={IconHome} activeIcon={IconHome} />
-            // <BottomTabItemBox>
-            //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
-            //   <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
-            //   <Text>Home</Text>
-            // </BottomTabItemBox>
-          ),
+          tabBarIcon: ({focused}) => tabItem({focused, title: 'Home', inactiveIcon: IconHome, activeIcon: IconHome}),
+        }}
+      />
+      <Tab.Screen
+        name={RoutesNavigation.PROMPTGUIDE}
+        component={PromptGuideScreen}
+        options={{
+          tabBarIcon: ({focused}) => tabItem({focused, title: 'Guide', inactiveIcon: IconHome, activeIcon: IconHome}),
+        }}
+      />
+      <Tab.Screen
+        name={RoutesNavigation.POMODORO}
+        component={PomodoroScreen}
+        options={{
+          tabBarIcon: ({focused}) =>
+            tabItem({focused, title: 'Pomodoro', inactiveIcon: IconHome, activeIcon: IconHome}),
+        }}
+      />
+      <Tab.Screen
+        name={RoutesNavigation.PLANNER_AI}
+        component={PlannerAIScreen}
+        options={{
+          tabBarIcon: ({focused}) =>
+            tabItem({focused, title: 'Planning', inactiveIcon: IconHome, activeIcon: IconHome}),
         }}
       />
       <Tab.Screen
         name={RoutesNavigation.PROFILE}
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({focused}) => (
-            <TabBarIconBox title="Profile" focused={focused} inactiveIcon={IconProfile} activeIcon={IconProfile} />
-
-            // <BottomTabItemBox>
-            //   {/* <Icon icon={focused ? IcoFillHome : IcoHome} color={tabColor(focused)} size={24} />
-            //   <Text type="label/lb_xs_r" color={focused ? 'label/labelSecondary' : 'label/labelQuaternary'}> */}
-            //   <Text type="label/lb_xs_r">Profile</Text>
-            // </BottomTabItemBox>
-          ),
+          tabBarIcon: ({focused}) =>
+            tabItem({focused, title: 'Guide', inactiveIcon: IconProfile, activeIcon: IconProfile}),
         }}
       />
     </Tab.Navigator>
@@ -92,9 +111,8 @@ interface ITabBarIcon {
 const TabBarIconBox = ({activeIcon, inactiveIcon, title = '', focused}: ITabBarIcon) => {
   return (
     <BottomTabItemBox>
-      <Icon icon={IconHome} size={16} />
-      {/* <Icon icon={focused ? activeIcon : inactiveIcon} size={16} /> */}
-      <Text type="typography/regular/h1">{title}</Text>
+      <Icon icon={focused ? activeIcon : inactiveIcon} size={16} />
+      <Text type="typography/regular/caption">{title}</Text>
     </BottomTabItemBox>
   );
 };
@@ -104,6 +122,5 @@ export default BottomTabNavigation;
 const BottomTabItemBox = styled(View)`
   align-items: center;
   padding: 4px;
-  width: 62px;
-  background-color: white;
+  width: 66px;
 `;

@@ -2,7 +2,7 @@ import {View, Text} from 'react-native';
 import React, {PropsWithChildren, useState} from 'react';
 import {QueryCache, QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {STATUS_API} from '@constants/statusApi';
-import { AxiosError } from 'axios';
+import {AxiosError} from 'axios';
 
 interface ErrorResponse {
   code?: string;

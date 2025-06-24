@@ -30,7 +30,8 @@ const HomeScreen = () => {
   const testAPI = async () => {
     try {
       const res = await axios.post(
-        'https://www.pomoai.minhthunt.com/api/promptAI',
+        'http://172.16.176.217:3000/api/promptAI',
+        // 'https://www.pomoai.minhthunt.com/api/promptAI',
         {
           prompt: 'Tôi muốn học IELTS mỗi ngày 1 tiếng vào buổi tối',
         },
