@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
     "vercel-deploy": "vercel deploy --prod",
     "vercel-dev": "vercel dev",
     "deploy-miss-ssl-check": "NODE_TLS_REJECT_UNAUTHORIZED=0 vercel deploy --prod",
