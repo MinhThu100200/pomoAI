@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "clean": "rm -rf node_modules yarn.clock mobile/node_modules mobile/ios/Pods mobile/ios/Podfile.lock",
-        "install:all": "yarn && cd mobile && yarn && cd ios && pod install"
+        "install:all": "yarn && cd mobile && yarn && cd ios && pod install",
+        "build": "yarn workspace @pomoai/shared-types build && yarn workspace pomoAI-backend build",
+        "postbuild": "mkdir -p api && cp -r backend/dist/api/* api/"
     },
     "workspaces": {
         "packages": [
@@ -15,5 +17,6 @@
             "**/react-native",
             "**/react-native/**"
         ]
-    }
+    },
+    "packageManager": "yarn@4.9.2"
 }
