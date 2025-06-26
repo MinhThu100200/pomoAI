@@ -24,13 +24,13 @@ export const translationLang: Record<TranslationLang, string> = {
   'vi-VN': 'Nunito',
 };
 
-interface Props extends AnimatedProps<TextProps> {
+export interface TextPropsCustom extends AnimatedProps<TextProps> {
   type?: keyof TextStyle;
   color?: ColorKey | string;
   lang?: TranslationLang;
 }
 
-const Text = ({type, style, children, color, lang, ...props}: Props) => {
+const Text = ({type, style, children, color, lang, ...props}: TextPropsCustom) => {
   return (
     <TextContainer style={[style]} type={type} color={color} lang={lang} {...props}>
       {typeof children === 'string' ? convertNewline(children) : children}
@@ -38,7 +38,7 @@ const Text = ({type, style, children, color, lang, ...props}: Props) => {
   );
 };
 
-const TextContainer = styled(Reanimated.Text)<Props>`
+const TextContainer = styled(Reanimated.Text)<TextPropsCustom>`
   ${({type = 'typography/regular/h1', color, theme, lang = 'en-US'}) => {
     const style = theme[type as TypographyKey] as FontStyle;
     const {fontFamily, fontSize, letterSpacing: ls, lineHeight, weight} = style;

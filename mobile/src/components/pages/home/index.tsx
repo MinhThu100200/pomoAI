@@ -1,9 +1,12 @@
-import {Linking, TouchableOpacity, View} from 'react-native';
+import { Linking, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import {Text} from '@components/atoms/common/Text';
+import { Text } from '@components/atoms/common/Text';
 import analytics from '@react-native-firebase/analytics';
 import axios from 'axios';
 import Config from 'react-native-config';
+import { Button } from '@components/atoms/common/Button';
+import { IconTimer } from '@assets/svg';
+import { Icon } from '@components/atoms/common/Icon';
 
 const HomeScreen = () => {
   const logTestEvent = async () => {
@@ -48,19 +51,21 @@ const HomeScreen = () => {
     }
   };
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text color="white" lang="vi-VN">
-        {Config.APP_TYPE} llllll
-      </Text>
-      <Text color="white" lang="en-US">
-        Homescreen - en
-      </Text>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', rowGap: 8 }}>
       <TouchableOpacity onPress={logTestEvent}>
         <Text>hiiii</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={testAPI}>
         <Text>testAPI</Text>
       </TouchableOpacity>
+      <Button type="solid" text="Button solid" hierarchy="primary" size="large" icon={IconTimer} />
+      <Button type="solid" text="Button solid" hierarchy="disable" size="medium" />
+      <Button type="solid" text="Button solid" hierarchy="destructive" size="small" />
+      <Button type="outline" text="Button outline" hierarchy="brand" size="large" />
+      <Button type="outline" text="Button outline" hierarchy="neutrals" size="medium" />
+      <Button type="outline" text="Button outline" hierarchy="destructive" size="small" />
+      <Button type="link" text="Button link" hierarchy="brand" size="large" />
+      <Button type="link" text="Button link" hierarchy="disable" size="small" />
     </View>
   );
 };

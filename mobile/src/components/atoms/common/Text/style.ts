@@ -9,8 +9,7 @@ export const getFont = (type: keyof TextStyle, lang: 'en-US' | 'vi-VN' = 'en-US'
       const style = theme[type as TypographyKey] as FontStyle;
       const {fontFamily, fontSize, letterSpacing: ls, lineHeight, weight} = style;
       const computedFontFamily = (lang === 'en-US' ? fontFamily : translationLang['vi-VN']) + '-' + weight;
-      return `font-family: 
-          /* font-family: ${computedFontFamily}; */
+      return `font-family: ${computedFontFamily}; 
           letter-spacing: ${ls}px;
           font-size: ${fontSize}px;
           line-height: ${lineHeight}px;
