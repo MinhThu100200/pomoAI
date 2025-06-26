@@ -90,18 +90,21 @@ const Button = ({
   );
 };
 
-const ButtonIcon = styled(Icon)``;
+const ButtonIcon = styled(Icon)`
+  align-self: center;
+`;
 
 const ButtonLayer = styled(View)<Props>`
   flex-direction: ${({ iconLocation }) => (iconLocation === 'left' ? 'row' : 'row-reverse')};
+  gap: ${({ theme }) => theme['utilities/dimensions/2']}px;
 `;
 
 const ButtonWrapper = styled(Pressable)<Props>`
   ${({ type = 'solid', hierarchy = 'destructive' }) => getButtonColor(type, hierarchy)}
   ${({ size = 'medium' }) => getButtonStyleBySize(size)}
   border-width: ${({ borderWidth, type }) => (borderWidth ? borderWidth : type !== 'link' ? 1 : 0)}px;
-  gap: ${({ theme }) => theme['utilities/dimensions/2']}px;
   border-radius: ${({ theme, borderRadius }) => borderRadius ?? theme['utilities/borderradius/full']}px;
+  align-items: center;
 `;
 
 const ButtonText = styled(Text)<{

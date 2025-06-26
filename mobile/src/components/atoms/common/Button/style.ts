@@ -113,9 +113,9 @@ export const buttonStylePadding = {
 };
 
 export const defaultSizeIcon = {
-  large: 20,
-  medium: 18,
-  small: 17,
+  large: 18,
+  medium: 16,
+  small: 15,
 };
 
 export const getTextColor = (type: TypeButton, hierarchy: Hierarchy) => {
@@ -149,5 +149,5 @@ export const getIconSize = (size?: Size, iconSize?: number): number => {
   if (size) {
     return defaultSizeIcon[size] as number;
   }
-  return iconSize || 20;
+  return iconSize || 18;
 };

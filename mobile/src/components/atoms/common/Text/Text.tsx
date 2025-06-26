@@ -1,8 +1,8 @@
-import {ColorKey, FontStyle, TextStyle, TypographyKey} from '@theme';
-import {convertNewline} from '@utils/convertNewLine';
-import {TextProps} from 'react-native';
-import Reanimated, {AnimatedProps} from 'react-native-reanimated';
-import styled, {css} from 'styled-components/native';
+import { ColorKey, FontStyle, TextStyle, TypographyKey } from '@theme';
+import { convertNewline } from '@utils/convertNewLine';
+import { TextProps } from 'react-native';
+import Reanimated, { AnimatedProps } from 'react-native-reanimated';
+import styled, { css } from 'styled-components/native';
 
 export type FontFamily = 'Pretendard' | 'Nunito';
 export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
@@ -30,7 +30,7 @@ export interface TextPropsCustom extends AnimatedProps<TextProps> {
   lang?: TranslationLang;
 }
 
-const Text = ({type, style, children, color, lang, ...props}: TextPropsCustom) => {
+const Text = ({ type, style, children, color, lang, ...props }: TextPropsCustom) => {
   return (
     <TextContainer style={[style]} type={type} color={color} lang={lang} {...props}>
       {typeof children === 'string' ? convertNewline(children) : children}
@@ -39,9 +39,9 @@ const Text = ({type, style, children, color, lang, ...props}: TextPropsCustom) =
 };
 
 const TextContainer = styled(Reanimated.Text)<TextPropsCustom>`
-  ${({type = 'typography/regular/h1', color, theme, lang = 'en-US'}) => {
+  ${({ type = 'typography/regular/h1', color, theme, lang = 'en-US' }) => {
     const style = theme[type as TypographyKey] as FontStyle;
-    const {fontFamily, fontSize, letterSpacing: ls, lineHeight, weight} = style;
+    const { fontFamily, fontSize, letterSpacing: ls, lineHeight, weight } = style;
     const computedFontFamily = (lang === 'en-US' ? fontFamily : translationLang['vi-VN']) + '-' + weight;
 
     return css`
