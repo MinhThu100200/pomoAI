@@ -7,6 +7,9 @@ import Config from 'react-native-config';
 import { Button } from '@components/atoms/common/Button';
 import { IconTimer } from '@assets/svg';
 import { Icon } from '@components/atoms/common/Icon';
+import { RadioButton } from '@components/atoms/common/RadioButton';
+import { OnPressPayload } from '@components/atoms/common/RadioButton/RadioButton';
+import { RadioGroup } from '@components/molecules/common/RadioGroup';
 
 const HomeScreen = () => {
   const logTestEvent = async () => {
@@ -52,20 +55,28 @@ const HomeScreen = () => {
   };
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', rowGap: 8 }}>
-      <TouchableOpacity onPress={logTestEvent}>
+      {/* <TouchableOpacity onPress={logTestEvent}>
         <Text>hiiii</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={testAPI}>
         <Text>testAPI</Text>
-      </TouchableOpacity>
-      <Button type="solid" text="Button solid" hierarchy="primary" size="large" icon={IconTimer} />
+      </TouchableOpacity> */}
+      {/* <Button type="solid" text="Button solid" hierarchy="primary" size="large" icon={IconTimer} />
       <Button type="solid" text="Button solid" hierarchy="disable" size="medium" />
       <Button type="solid" text="Button solid" hierarchy="destructive" size="small" />
       <Button type="outline" text="Button outline" hierarchy="brand" size="large" />
       <Button type="outline" text="Button outline" hierarchy="neutrals" size="medium" />
       <Button type="outline" text="Button outline" hierarchy="destructive" size="small" />
       <Button type="link" text="Button link" hierarchy="brand" size="large" />
-      <Button type="link" text="Button link" hierarchy="disable" size="small" />
+      <Button type="link" text="Button link" hierarchy="disable" size="small" /> */}
+      <RadioGroup
+        name={'Radio'}
+        value={false}
+        style={{ height: 20, width: 20 }}
+        size={20}
+        content="hihiiii"
+        onPress={function (payload: OnPressPayload<string, boolean>): void {}}
+      />
     </View>
   );
 };
