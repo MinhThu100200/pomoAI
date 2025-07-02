@@ -3,19 +3,18 @@
     "scripts": {
         "clean": "rm -rf node_modules yarn.clock mobile/node_modules mobile/ios/Pods mobile/ios/Podfile.lock",
         "install:all": "yarn && cd mobile && yarn && cd ios && pod install",
-        "build": "yarn workspace @pomoai/shared-types build && yarn workspace pomoAI-backend build",
-        "postbuild": "mkdir -p api && cp -r backend/dist/api/* api/"
+        "build": "yarn workspace @pomoai/shared-types build && yarn workspace @pomoai/backend build",
+        "postbuild": "mkdir -p api && cp -r backend/dist/api/* api/",
+        "dev:ios": "yarn workspace @pomoai/mobile ios",
+        "dev:android": "yarn workspace @pomoai/mobile android",
+        "dev:mobile": "yarn workspace @pomoai/mobile start",
+        "lint:mobile": "yarn workspace pomoAI lint"
     },
     "workspaces": {
         "packages": [
             "shared-types",
             "backend",
             "mobile"
-        ],
-        "nohoist": [
-            "**/react",
-            "**/react-native",
-            "**/react-native/**"
         ]
     },
     "packageManager": "yarn@4.9.2"
