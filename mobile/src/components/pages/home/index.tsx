@@ -10,6 +10,10 @@ import { Icon } from '@components/atoms/common/Icon';
 import { RadioButton } from '@components/atoms/common/RadioButton';
 import { OnPressPayload } from '@components/atoms/common/RadioButton/RadioButton';
 import { RadioGroup } from '@components/molecules/common/RadioGroup';
+import { Checkbox } from '@components/atoms/common/Checkbox';
+import { CheckboxGroup } from '@components/molecules/common/CheckBoxGroup';
+import SwitchButton from '@components/atoms/common/Switch/SwitchButton';
+import SwitchButtonGroup from '@components/molecules/common/SwitchGroup/SwitchButtonGroup';
 
 const HomeScreen = () => {
   const logTestEvent = async () => {
@@ -69,13 +73,15 @@ const HomeScreen = () => {
       <Button type="outline" text="Button outline" hierarchy="destructive" size="small" />
       <Button type="link" text="Button link" hierarchy="brand" size="large" />
       <Button type="link" text="Button link" hierarchy="disable" size="small" /> */}
-      <RadioGroup
+      <Checkbox name={'Radio'} value={true} onPress={(name: string, value: boolean) => {}} type={'rounded'} />
+      <CheckboxGroup name={'Radio'} value={true} onPress={(name: string, value: boolean) => {}} content="hiiii" />
+      <SwitchButton name={'Radio'} value={false} onPress={(name: string, value: boolean) => {}} disabled />
+      <SwitchButtonGroup
         name={'Radio'}
         value={false}
-        style={{ height: 20, width: 20 }}
-        size={20}
-        content="hihiiii"
-        onPress={function (payload: OnPressPayload<string, boolean>): void {}}
+        onPress={(name: string, value: boolean) => {}}
+        disabled
+        content="hiiii"
       />
     </View>
   );

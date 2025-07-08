@@ -1,5 +1,5 @@
 import React from 'react';
-import {SvgProps} from 'react-native-svg';
+import { SvgProps } from 'react-native-svg';
 
 interface Props extends SvgProps {
   icon: React.FC<SvgProps>;
@@ -7,8 +7,8 @@ interface Props extends SvgProps {
   color?: string;
 }
 
-const Icon = ({icon: Icon, fill, size = 24, color, ...props}: Props) => {
-  return <Icon color={color} fill={fill} width={size} height={size} {...props} />;
+const Icon = ({ icon: Icon, fill, size = 24, color, ...props }: Props) => {
+  return <Icon color={color} fill={fill} stroke={color} strokeWidth={2} width={size} height={size} {...props} />;
 };
 
 export default Icon;

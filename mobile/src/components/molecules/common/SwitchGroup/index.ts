@@ -1,1 +1,1 @@
-export { default as SwitchGroup } from './SwitchGroup';
+export { default as SwitchGroup } from './SwitchButtonGroup';
