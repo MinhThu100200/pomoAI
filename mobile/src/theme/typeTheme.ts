@@ -42,6 +42,7 @@ export interface LightThemeType extends ThemeBaseType {
   'color/neutrals/800'?: string;
   'color/neutrals/900'?: string;
   'color/neutrals/950'?: string;
+  'color/neutrals/01'?: string;
   'color/orange/100'?: string;
   'color/orange/200'?: string;
   'color/orange/300'?: string;
@@ -343,6 +344,7 @@ export interface DarkThemeType extends ThemeBaseType {
   'color/neutrals/800'?: string;
   'color/neutrals/900'?: string;
   'color/neutrals/950'?: string;
+  'color/neutrals/01'?: string;
   'color/orange/100'?: string;
   'color/orange/200'?: string;
   'color/orange/300'?: string;

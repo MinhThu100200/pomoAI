@@ -8,7 +8,17 @@ interface Props extends SvgProps {
 }
 
 const Icon = ({ icon: Icon, fill, size = 24, color, ...props }: Props) => {
-  return <Icon color={color} fill={fill} stroke={color} strokeWidth={2} width={size} height={size} {...props} />;
+  return (
+    <Icon
+      color={color}
+      fill={fill ?? 'transparent'}
+      stroke={color}
+      strokeWidth={2}
+      width={size}
+      height={size}
+      {...props}
+    />
+  );
 };
 
 export default Icon;

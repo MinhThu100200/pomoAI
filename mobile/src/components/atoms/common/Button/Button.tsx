@@ -31,7 +31,7 @@ interface Props extends PressableProps {
 
 const Button = ({
   type,
-  size,
+  size = 'small',
   hierarchy,
   icon,
   iconColor,

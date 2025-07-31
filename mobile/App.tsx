@@ -1,24 +1,25 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {PortalProvider} from '@gorhom/portal';
-import {useTheme} from '@hooks/useTheme';
-import RootNavigation, {DirectParamListBase} from '@navigation/rootNavigation';
-import {RoutesNavigation} from '@navigation/routesNavigation';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { PortalProvider } from '@gorhom/portal';
+import { useTheme } from '@hooks/useTheme';
+import RootNavigation, { DirectParamListBase } from '@navigation/rootNavigation';
+import { RoutesNavigation } from '@navigation/routesNavigation';
 import GlobalStyleProvider from '@provider/GlobalStyleProvider';
 import InitializationProvider from '@provider/InitializationProvider';
 import ReactQueryProvider from '@provider/ReactQueryProvider';
-import {createNavigationContainerRef, DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {useDeepLink} from '@hooks/useDeepLink';
+import { createNavigationContainerRef, DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useDeepLink } from '@hooks/useDeepLink';
 import analytics from '@react-native-firebase/analytics';
-import {I18nextProvider} from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import i18n from '@i18n/i18n';
+import { Modal } from '@components/molecules/common/Modal';
 
 export const navigationRef = createNavigationContainerRef<DirectParamListBase>();
 
 function App(): React.JSX.Element {
-  const {theme} = useTheme();
-  const {linking} = useDeepLink();
+  const { theme } = useTheme();
+  const { linking } = useDeepLink();
 
   const statusBarColor = useMemo(() => theme['bg/neutrals/secondary'], [theme]);
   const [isReadyNavigation, setIsReadyNavigation] = useState(false);
@@ -92,6 +93,7 @@ function App(): React.JSX.Element {
                     onReady={onReady}
                     onStateChange={onStateChange}>
                     <RootNavigation />
+                    <Modal />
                   </NavigationContainer>
                 </GlobalStyleProvider>
               </I18nextProvider>

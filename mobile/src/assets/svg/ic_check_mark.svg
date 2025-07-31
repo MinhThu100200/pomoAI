@@ -1,7 +1,3 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" id="_24x24_On_Light_Checkmark" data-name="24x24/On Light/Checkmark" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <rect id="view-box" width="24" height="24" fill="#ffffff" opacity="0"/> <path id="Shape" d="M5.341,12.247a1,1,0,0,0,1.317,1.505l4-3.5a1,1,0,0,0,.028-1.48l-9-8.5A1,1,0,0,0,.313,1.727l8.2,7.745Z" transform="translate(19 6.5) rotate(90)" fill="#ffffff"/> </g>
-</svg>
+<svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M17.7507 0.213152C18.0643 0.515087 18.0848 1.02604 17.7964 1.3544L6.98106 13.6691C6.59 14.1144 5.91338 14.1098 5.52816 13.6579L0.195892 7.40244C-0.0877966 7.06964 -0.0600924 6.55906 0.257771 6.26203C0.575635 5.96501 1.06329 5.99401 1.34698 6.32682L6.26568 12.0971L16.6607 0.260994C16.9491 -0.0673636 17.4371 -0.0887833 17.7507 0.213152Z" fill="#3E4C59"/>
+</svg>

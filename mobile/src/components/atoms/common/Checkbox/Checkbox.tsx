@@ -29,7 +29,7 @@ const Checkbox = ({ name, value, onPress, type, disabled, size }: CheckBoxProps)
       {value && (
         <Icon
           icon={IconCheckMark}
-          size={size ?? 14}
+          size={size ?? 10}
           color={disabled ? theme['icon/neutrals/disable'] : theme['icon/light/brand']}
         />
       )}

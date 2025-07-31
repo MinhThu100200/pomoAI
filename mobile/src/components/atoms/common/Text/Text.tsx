@@ -5,13 +5,14 @@ import Reanimated, { AnimatedProps } from 'react-native-reanimated';
 import styled, { css } from 'styled-components/native';
 
 export type FontFamily = 'Pretendard' | 'Nunito';
-export type FontWeight = 'Bold' | 'SemiBold' | 'Regular';
+export type FontWeight = 'Bold' | 'SemiBold' | 'Regular' | 'Medium';
 export type TranslationLang = 'en-US' | 'vi-VN';
 
 export const fontWeight: Record<FontWeight, string> = {
   Bold: '700',
   SemiBold: '600',
   Regular: '400',
+  Medium: '500',
 };
 
 export const letterSpacing: Record<FontFamily, number> = {

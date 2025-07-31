@@ -14,7 +14,7 @@
 		485672FC2DED73D50037FECA /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672F72DED73D50037FECA /* Nunito-Bold.ttf */; };
 		485672FD2DED73D50037FECA /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672F92DED73D50037FECA /* Nunito-Regular.ttf */; };
 		485672FE2DED73D50037FECA /* Nunito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 485672F82DED73D50037FECA /* Nunito-Medium.ttf */; };
-		4887D2392DFBB92D0033FB98 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4887D2382DFBB92D0033FB98 /* GoogleService-Info.plist */; };
+		486BD1892E277AE00094C550 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 486BD1882E277AE00094C550 /* GoogleService-Info.plist */; };
 		489ECE522DF29D32004A755F /* ImageNotification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 489ECE4B2DF29D32004A755F /* ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		48D7CE4D2DFFD45D00DADB9F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 48D7CE4C2DFFD45D00DADB9F /* Config.xcconfig */; };
 		48D7CE4E2DFFD45D00DADB9F /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 48D7CE4C2DFFD45D00DADB9F /* Config.xcconfig */; };
@@ -80,7 +80,7 @@
 		485672F82DED73D50037FECA /* Nunito-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Medium.ttf"; sourceTree = "<group>"; };
 		485672F92DED73D50037FECA /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		485672FA2DED73D50037FECA /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
-		4887D2382DFBB92D0033FB98 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		486BD1882E277AE00094C550 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4887D24A2DFC1FAB0033FB98 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		489389432DF2D601004A3ED6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		489ECE4B2DF29D32004A755F /* ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ImageNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +144,7 @@
 		13B07FAE1A68108700A75B9A /* pomoAI */ = {
 			isa = PBXGroup;
 			children = (
-				4887D2382DFBB92D0033FB98 /* GoogleService-Info.plist */,
+				486BD1882E277AE00094C550 /* GoogleService-Info.plist */,
 				48F34F2A2DE955C000C68889 /* fonts */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
@@ -359,9 +359,9 @@
 				485672FE2DED73D50037FECA /* Nunito-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				48D7CE4E2DFFD45D00DADB9F /* Config.xcconfig in Resources */,
-				4887D2392DFBB92D0033FB98 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				805A314C2E006C430098360F /* Config.debug.xcconfig in Resources */,
+				486BD1892E277AE00094C550 /* GoogleService-Info.plist in Resources */,
 				3104A0B39FCCE4321238763E /* PrivacyInfo.xcprivacy in Resources */,
 				805A31492E006C2D0098360F /* Config.release.xcconfig in Resources */,
 				48F34F302DE955FB00C68889 /* Pretendard-Medium.otf in Resources */,
